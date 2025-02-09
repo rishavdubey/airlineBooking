@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class FlightRequest {
 
@@ -25,6 +27,12 @@ public class FlightRequest {
     @Min(value = 1, message = "Available seats must be at least 1")
     @NotNull(message = "Available seats is mandatory")
     private Integer availableSeat;
+
+    @NotNull(message = "Date is mandatory")
+    private LocalDate date;
+
+    @NotNull(message = "Time is mandatory")
+    private LocalTime time;
 
     public String getId() {
         return id;
@@ -72,5 +80,21 @@ public class FlightRequest {
 
     public void setAvailableSeat(Integer availableSeat) {
         this.availableSeat = availableSeat;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 }

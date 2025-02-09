@@ -4,6 +4,7 @@ public class BookingResponse {
     private String bookingId;
     private String message;
     private String status;
+    private int numberOfSeat;
     private FlightDetails flightDetails;
 
     public String getBookingId() {
@@ -36,5 +37,13 @@ public class BookingResponse {
 
     public void setFlightDetails(FlightDetails flightDetails) {
         this.flightDetails = flightDetails;
+    }
+
+    public int getNumberOfSeat() {
+        return numberOfSeat;
+    }
+
+    public void setNumberOfSeat(int numberOfSeat) {
+        this.numberOfSeat = numberOfSeat;
     }
 }

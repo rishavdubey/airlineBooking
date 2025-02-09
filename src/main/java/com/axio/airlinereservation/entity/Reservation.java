@@ -9,6 +9,7 @@ public class Reservation {
     private String flightId;
     private String userEmail;
     private String userName;
+    private int numberOfSeat;
 
     public String getReservationId() {
         return reservationId;
@@ -40,5 +41,13 @@ public class Reservation {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getNumberOfSeat() {
+        return numberOfSeat;
+    }
+
+    public void setNumberOfSeat(int numberOfSeat) {
+        this.numberOfSeat = numberOfSeat;
     }
 }

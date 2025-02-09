@@ -4,6 +4,7 @@ import com.axio.airlinereservation.common.UniqueIdGenerator;
 import com.axio.airlinereservation.entity.Booking;
 import com.axio.airlinereservation.entity.Flight;
 import com.axio.airlinereservation.entity.Reservation;
+import com.axio.airlinereservation.exception.CustomException;
 import com.axio.airlinereservation.repository.BookingRepository;
 import com.axio.airlinereservation.response.BookingResponse;
 import com.axio.airlinereservation.response.FlightDetails;
@@ -37,10 +38,14 @@ public class BookingService {
         BookingResponse bookingResponse=new BookingResponse();
         bookingResponse.setStatus("confirmed");
         bookingResponse.setFlightDetails(flightDetails);
+        bookingResponse.setNumberOfSeat(reservation.getNumberOfSeat());
 
         Optional<Booking> bookingOptional = bookingRepository.findByReservationId(reservationId);
 
         if (bookingOptional.isEmpty()) {
+            if(!flightService.seatBook(reservation.getNumberOfSeat(), reservation.getFlightId())){
+                throw new CustomException("Booking Failed!","tech");
+            }
             Booking newBooking=new Booking();
             newBooking.setBookingId("BOK_"+uniqueIdGenerator.generateUniqueId());
             newBooking.setReservationId(reservationId);

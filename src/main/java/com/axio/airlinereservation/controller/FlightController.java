@@ -4,6 +4,7 @@ import com.axio.airlinereservation.common.CommonValidation;
 import com.axio.airlinereservation.entity.Flight;
 import com.axio.airlinereservation.request.flight.FlightRequest;
 import com.axio.airlinereservation.response.CustomMessage;
+import com.axio.airlinereservation.response.FlightsAvailable;
 import com.axio.airlinereservation.service.FlightService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,12 @@ class FlightController {
     public ResponseEntity<Map<String,Double>> getFareDetails(@RequestParam("flightId") String id) {
         Double price=flightService.getFlightFare(id);
         return ResponseEntity.status(HttpStatus.OK).body(Map.of("fare", price));
+
+    }
+    @GetMapping("/find")
+    public ResponseEntity<FlightsAvailable> getAvailableFlight(@RequestParam("fromCity") String fromCity, @RequestParam("toCity") String toCity, @RequestParam("date") String date){
+        FlightsAvailable flightsAvailable=flightService.getAvailableFlight(fromCity,toCity,date);
+        return ResponseEntity.status(HttpStatus.OK).body(flightsAvailable);
 
     }
 }

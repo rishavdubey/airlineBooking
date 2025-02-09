@@ -1,8 +1,10 @@
 package com.axio.airlinereservation.entity;
 
 import jakarta.persistence.Entity;
-
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Flight {
@@ -13,6 +15,13 @@ public class Flight {
     private String fromCity;
     private String toCity;
     private int availableSeat;
+
+    @NotNull(message = "Date is mandatory")
+    private LocalDate date;
+
+    @NotNull(message = "Time is mandatory")
+    private LocalTime time;
+
     public String getId() {
         return id;
     }
@@ -59,5 +68,21 @@ public class Flight {
 
     public void setAvailableSeat(int availableSeat) {
         this.availableSeat = availableSeat;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 }
